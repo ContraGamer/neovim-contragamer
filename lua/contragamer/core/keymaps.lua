@@ -1,24 +1,26 @@
 vim.g.mapleader = " "
 
-local keymap = vim.keymap
+local function map(mode, lhs, rhs, desc)
+  vim.keymap.set(mode, lhs, rhs, { desc = desc })
+end
 
-keymap.set("i","jk", "<ESC>",{desc = "Exit insert mode with jk"})
-keymap.set("i", "jkl", "<Esc>la",{desc = "Exit insert mode with jk and move right one space and back mode insert"})
-keymap.set("i", "jkll", "<Esc>l",{desc = "Exit insert mode with jk and move right"})
+map("i", "jk", "<ESC>", "Exit insert mode with jk")
+map("i", "jkl", "<Esc>la", "Exit insert mode with jk and move right one space and back mode insert")
+map("i", "jkll", "<Esc>l", "Exit insert mode with jk and move right")
 
-keymap.set("n","<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+map("n", "<leader>nh", ":nohl<CR>", "Clear search highlights")
 
-keymap.set("n","<leader>+", "<C-a>", { desc = "Increment number" })
-keymap.set("n","<leader>-", "<C-x>", { desc = "Decrement number" })
+map("n", "<leader>+", "<C-a>", "Increment number")
+map("n", "<leader>-", "<C-x>", "Decrement number")
 
 -- window management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+map("n", "<leader>sv", "<C-w>v", "Split window vertically") -- split window vertically
+map("n", "<leader>sh", "<C-w>s", "Split window horizontally") -- split window horizontally
+map("n", "<leader>se", "<C-w>=", "Make splits equal size") -- make split windows equal width & height
+map("n", "<leader>sx", "<cmd>close<CR>", "Close current split") -- close current split window
 
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+map("n", "<leader>to", "<cmd>tabnew<CR>", "Open new tab") -- open new tab
+map("n", "<leader>tx", "<cmd>tabclose<CR>", "Close current tab") -- close current tab
+map("n", "<leader>tn", "<cmd>tabn<CR>", "Go to next tab") --  go to next tab
+map("n", "<leader>tp", "<cmd>tabp<CR>", "Go to previous tab") --  go to previous tab
+map("n", "<leader>tf", "<cmd>tabnew %<CR>", "Open current buffer in new tab") --  move current buffer to new tab

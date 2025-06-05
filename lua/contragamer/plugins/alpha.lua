@@ -2,8 +2,15 @@ return {
   "goolord/alpha-nvim",
   event = "VimEnter",
   config = function()
-    local alpha = require("alpha")
-    local dashboard = require("alpha.themes.dashboard")
+    local safe_require = require("contragamer.utils").safe_require
+    local alpha = safe_require("alpha")
+    if not alpha then
+      return
+    end
+    local dashboard = safe_require("alpha.themes.dashboard")
+    if not dashboard then
+      return
+    end
 
     -- Set header
     dashboard.section.header.val = {

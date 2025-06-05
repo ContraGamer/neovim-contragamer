@@ -2,8 +2,15 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
-    local lualine = require("lualine")
-    local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+    local safe_require = require("contragamer.utils").safe_require
+    local lualine = safe_require("lualine")
+    if not lualine then
+      return
+    end
+    local lazy_status = safe_require("lazy.status") -- to configure lazy pending updates count
+    if not lazy_status then
+      return
+    end
 
     local colors = {
       blue = "#65D1FF",

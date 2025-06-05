@@ -2,7 +2,11 @@ return {
   "nvim-tree/nvim-tree.lua",
   dependencies = "kyazdani42/nvim-web-devicons",
   config = function()
-    local nvimtree = require("nvim-tree")
+    local safe_require = require("contragamer.utils").safe_require
+    local nvimtree = safe_require("nvim-tree")
+    if not nvimtree then
+      return
+    end
 
     -- recommended settings from nvim-tree documentation
     vim.g.loaded_netrw = 1

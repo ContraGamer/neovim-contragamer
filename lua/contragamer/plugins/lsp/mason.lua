@@ -6,13 +6,21 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
   },
   config = function()
-    -- import mason
-    local mason = require("mason")
+    local safe_require = require("contragamer.utils").safe_require
+    local mason = safe_require("mason")
+    if not mason then
+      return
+    end
 
-    -- import mason-lspconfig
-    local mason_lspconfig = require("mason-lspconfig")
+    local mason_lspconfig = safe_require("mason-lspconfig")
+    if not mason_lspconfig then
+      return
+    end
 
-    local mason_tool_installer = require("mason-tool-installer")
+    local mason_tool_installer = safe_require("mason-tool-installer")
+    if not mason_tool_installer then
+      return
+    end
 
     -- enable mason and configure icons
     mason.setup({

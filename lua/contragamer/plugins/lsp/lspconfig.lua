@@ -7,14 +7,21 @@ return {
     { "folke/neodev.nvim", opts = {} },
   },
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
+    local safe_require = require("contragamer.utils").safe_require
+    local lspconfig = safe_require("lspconfig")
+    if not lspconfig then
+      return
+    end
 
-    -- import mason_lspconfig plugin
-    local mason_lspconfig = require("mason-lspconfig")
+    local mason_lspconfig = safe_require("mason-lspconfig")
+    if not mason_lspconfig then
+      return
+    end
 
-    -- import cmp-nvim-lsp plugin
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local cmp_nvim_lsp = safe_require("cmp_nvim_lsp")
+    if not cmp_nvim_lsp then
+      return
+    end
 
     local keymap = vim.keymap -- for conciseness
 

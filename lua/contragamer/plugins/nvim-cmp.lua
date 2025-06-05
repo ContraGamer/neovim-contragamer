@@ -16,11 +16,21 @@ return {
     "onsails/lspkind.nvim", -- vs-code like pictograms
   },
   config = function()
-    local cmp = require("cmp")
+    local safe_require = require("contragamer.utils").safe_require
+    local cmp = safe_require("cmp")
+    if not cmp then
+      return
+    end
 
-    local luasnip = require("luasnip")
+    local luasnip = safe_require("luasnip")
+    if not luasnip then
+      return
+    end
 
-    local lspkind = require("lspkind")
+    local lspkind = safe_require("lspkind")
+    if not lspkind then
+      return
+    end
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()

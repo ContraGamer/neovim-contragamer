@@ -1,7 +1,11 @@
 return {
   "rmagatti/auto-session",
   config = function()
-    local auto_session = require("auto-session")
+    local safe_require = require("contragamer.utils").safe_require
+    local auto_session = safe_require("auto-session")
+    if not auto_session then
+      return
+    end
 
     auto_session.setup({
       auto_restore_enabled = false,

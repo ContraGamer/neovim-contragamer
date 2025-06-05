@@ -6,8 +6,11 @@ return {
     "windwp/nvim-ts-autotag",
   },
   config = function()
-    -- import nvim-treesitter plugin
-    local treesitter = require("nvim-treesitter.configs")
+    local safe_require = require("contragamer.utils").safe_require
+    local treesitter = safe_require("nvim-treesitter.configs")
+    if not treesitter then
+      return
+    end
 
     -- configure treesitter
     treesitter.setup({ -- enable syntax highlighting

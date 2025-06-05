@@ -8,8 +8,15 @@ return {
     "folke/todo-comments.nvim",
   },
   config = function()
-    local telescope = require("telescope")
-    local actions = require("telescope.actions")
+    local safe_require = require("contragamer.utils").safe_require
+    local telescope = safe_require("telescope")
+    if not telescope then
+      return
+    end
+    local actions = safe_require("telescope.actions")
+    if not actions then
+      return
+    end
 
     telescope.setup({
       defaults = {

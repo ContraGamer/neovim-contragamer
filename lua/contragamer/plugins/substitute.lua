@@ -2,7 +2,11 @@ return {
   "gbprod/substitute.nvim",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
-    local substitute = require("substitute")
+    local safe_require = require("contragamer.utils").safe_require
+    local substitute = safe_require("substitute")
+    if not substitute then
+      return
+    end
 
     substitute.setup()
 

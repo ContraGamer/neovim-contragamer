@@ -5,10 +5,16 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
-    -- import comment plugin safely
-    local comment = require("Comment")
+    local safe_require = require("contragamer.utils").safe_require
+    local comment = safe_require("Comment")
+    if not comment then
+      return
+    end
 
-    local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
+    local ts_context_commentstring = safe_require("ts_context_commentstring.integrations.comment_nvim")
+    if not ts_context_commentstring then
+      return
+    end
 
     -- enable comment
     comment.setup({
